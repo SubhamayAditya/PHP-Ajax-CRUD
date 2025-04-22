@@ -67,7 +67,23 @@
                     document.getElementById("formid").reset();
 
                 }
+            })
+        });
 
+
+        //Delete
+        $('#display').on('click', '.delete-btn', function () {
+
+            var studentId = $(this).data('id');
+            // alert(studentId);
+            $.ajax({
+                url: 'delete.php',
+                type: 'post',
+                data: { id: studentId },
+                success: function (response) {
+                    alert(response);
+                    displaySection(); // Refresh the list after delete
+                }
             })
         });
 

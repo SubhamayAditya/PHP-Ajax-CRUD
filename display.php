@@ -37,7 +37,7 @@
                         <td><?php echo $row['stemail']; ?></td>
                         <td><?php echo $row['stlocation']; ?></td>
                         <td><button>Edit</button></td>
-                        <td><button>Delete</button></td>
+                        <td><button class="delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button></td>
                     </tr>
 
             <?php
