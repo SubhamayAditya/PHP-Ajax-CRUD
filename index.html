@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <form method="post" action="" id="formid" class="form-container">
+        <h2>Student Details</h2>
+
+        <div class="form-group">
+            <input type="text" name="stuname" id="stuname" placeholder="Student Name">
+        </div>
+        <div class="form-group">
+            <input type="email" name="stuemail" id="stuemail" placeholder="Student Email">
+        </div>
+        <div class="form-group">
+            <input type="text" name="stuloc" id="stuloc" placeholder="Student Location">
+        </div>
+        <div class="form-group">
+            <input type="file" name="stuimg" id="stuimg">
+        </div>
+        <input type="submit" value="Submit" name="submit" id="submit">
+    </form>
+    </div>
+    <div id="display"> </div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        //Display
+        function displaySection() {
+            $.ajax({
+                url: 'display.php',
+                type: 'post',
+                success: function (data) {
+                    $('#display').html(data);
+                }
+            })
+        }
+        displaySection();
+
+
+
+        //Insert
+        $('#formid').on('submit', function (e) {
+            e.preventDefault();
+            var formdata = new FormData(this);
+            // alert('hi')
+            $.ajax({
+                url: 'insert.php',
+                type: 'post',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    displaySection();
+                    document.getElementById("formid").reset();
+
+                }
+
+            })
+        });
+
+    });
+
+</script>
+
+</html>
